@@ -23,6 +23,9 @@ package ini.cx3d.simulations;
 
 import static ini.cx3d.utilities.Matrix.add;
 import static ini.cx3d.utilities.Matrix.randomNoise;
+
+import ini.cx3d.SimStateSerializable;
+import ini.cx3d.SimStateSerializationUtil;
 import ini.cx3d.cells.Cell;
 import ini.cx3d.graphics.ECM_GUI_Creator;
 import ini.cx3d.graphics.View;
@@ -60,7 +63,7 @@ import javax.swing.JFrame;
  * @author fredericzubler
  *
  */
-public class ECM {
+public class ECM implements SimStateSerializable {
 
 	// List of all the CX3DRunbable objects in the simulation ............................
 
@@ -158,6 +161,28 @@ public class ECM {
 	 * the chemical that can be given as argument in the methods to know the concentration/grad.. */
 	public Hashtable<String, Substance> allArtificialSubstances = new Hashtable<String, Substance>();
 
+
+	public StringBuilder simStateToJson(StringBuilder sb) {
+		sb.append("{");
+
+		//FIXME physicalNodeList
+		SimStateSerializationUtil.unorderedCollection(sb, "physicalSphereList", physicalSphereList);
+		SimStateSerializationUtil.unorderedCollection(sb, "physicalCylinderList", physicalCylinderList);
+		SimStateSerializationUtil.unorderedCollection(sb, "somaElementList", somaElementList);
+		SimStateSerializationUtil.unorderedCollection(sb, "neuriteElementList", neuriteElementList);
+		SimStateSerializationUtil.unorderedCollection(sb, "cellList", cellList);
+
+		//FIXME spacnode
+		SimStateSerializationUtil.map(sb, "substancesLibrary", substancesLibrary);
+		SimStateSerializationUtil.map(sb, "intracellularSubstancesLibrary", intracellularSubstancesLibrary);
+		//FIXME color library
+
+
+
+		SimStateSerializationUtil.removeLastChar(sb);
+		sb.append("}");
+		return sb;
+	}
 
 
 	// **************************************************************************
