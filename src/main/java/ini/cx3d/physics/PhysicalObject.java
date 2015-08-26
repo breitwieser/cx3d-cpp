@@ -115,6 +115,7 @@ public abstract class PhysicalObject extends PhysicalNode {
 		removeLastChar(sb);
 		sb.append(",");
 
+		keyValue(sb, "interObjectForce", interObjectForce);
 		keyValue(sb, "stillExisting", stillExisting);
 		keyValue(sb, "onTheSchedulerListForPhysicalObjects", onTheSchedulerListForPhysicalObjects);
 		keyValue(sb, "massLocation", massLocation);

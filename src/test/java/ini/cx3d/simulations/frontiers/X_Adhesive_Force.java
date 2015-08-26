@@ -396,8 +396,11 @@ public class X_Adhesive_Force implements InterObjectForce{
 			printlnLine(add(B1,scalarMult(t,M1)));
 		}
 	}
-	
-	
-	
-	
+
+
+	@Override
+	public StringBuilder simStateToJson(StringBuilder sb) {
+		sb.append("{}");
+		return sb;
+	}
 }

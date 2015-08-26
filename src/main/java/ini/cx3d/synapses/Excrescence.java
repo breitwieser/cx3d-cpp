@@ -54,7 +54,7 @@ public abstract class Excrescence implements SimStateSerializable{
 	public StringBuilder simStateToJson(StringBuilder sb) {
 		sb.append("{");
 
-		//FIXME: po is circular reference
+		//po is circular reference
 		keyValue(sb, "ex", ex);
 		keyValue(sb, "positionOnPO", positionOnPO);
 		keyValue(sb, "length", length);

@@ -165,19 +165,36 @@ public class ECM implements SimStateSerializable {
 	public StringBuilder simStateToJson(StringBuilder sb) {
 		sb.append("{");
 
-		//FIXME physicalNodeList
+		SimStateSerializationUtil.unorderedCollection(sb, "physicalNodeList", physicalNodeList);
 		SimStateSerializationUtil.unorderedCollection(sb, "physicalSphereList", physicalSphereList);
 		SimStateSerializationUtil.unorderedCollection(sb, "physicalCylinderList", physicalCylinderList);
 		SimStateSerializationUtil.unorderedCollection(sb, "somaElementList", somaElementList);
 		SimStateSerializationUtil.unorderedCollection(sb, "neuriteElementList", neuriteElementList);
 		SimStateSerializationUtil.unorderedCollection(sb, "cellList", cellList);
+		SimStateSerializationUtil.unorderedCollection(sb, "ecmChemicalReactionList", ecmChemicalReactionList);
 
-		//FIXME spacnode
+		SimStateSerializationUtil.keyValue(sb, "initialNode", initialNode);
 		SimStateSerializationUtil.map(sb, "substancesLibrary", substancesLibrary);
 		SimStateSerializationUtil.map(sb, "intracellularSubstancesLibrary", intracellularSubstancesLibrary);
 		//FIXME color library
 
+		SimStateSerializationUtil.keyValue(sb, "artificialWallsForSpheres", artificialWallsForSpheres);
+		SimStateSerializationUtil.keyValue(sb, "artificialWallsForCylinders", artificialWallsForCylinders);
 
+		SimStateSerializationUtil.keyValue(sb, "Xmin", Xmin);
+		SimStateSerializationUtil.keyValue(sb, "Xmax", Xmax);
+		SimStateSerializationUtil.keyValue(sb, "Xmin", Ymin);
+		SimStateSerializationUtil.keyValue(sb, "Xmax", Ymax);
+		SimStateSerializationUtil.keyValue(sb, "Zmin", Zmin);
+		SimStateSerializationUtil.keyValue(sb, "Zmax", Zmax);
+
+		SimStateSerializationUtil.keyValue(sb, "anyArtificialGradientDefined", anyArtificialGradientDefined);
+
+		SimStateSerializationUtil.mapOfDoubleArray(sb, "gaussianArtificialConcentrationZ", gaussianArtificialConcentrationZ);
+		SimStateSerializationUtil.mapOfDoubleArray(sb, "linearArtificialConcentrationZ", linearArtificialConcentrationZ);
+		SimStateSerializationUtil.mapOfDoubleArray(sb, "gaussianArtificialConcentrationX", gaussianArtificialConcentrationX);
+		SimStateSerializationUtil.mapOfDoubleArray(sb, "linearArtificialConcentrationX", linearArtificialConcentrationX);
+		SimStateSerializationUtil.map(sb, "allArtificialSubstances", allArtificialSubstances);
 
 		SimStateSerializationUtil.removeLastChar(sb);
 		sb.append("}");

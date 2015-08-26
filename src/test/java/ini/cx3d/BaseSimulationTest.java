@@ -51,13 +51,22 @@ public abstract class BaseSimulationTest {
     }
 
     /**
-     * value in milliseconds
+     * do not run performance tests on travis-ci - simple time measuring will not work
+     * cannot ensure that tests are run on same machine under same load
      */
-    private static boolean assertPerformance = true;
+    private static boolean assertPerformance = System.getenv("TRAVIS") == null;
 
     private String execTimesFileName;
     private LinkedList<Map.Entry<String, Double>> executionTimes;
+
+    /**
+     * last git commit id
+     */
     private String lastCommit;
+
+    /**
+     * value in milliseconds
+     */
     private double maxAllowedRuntime = Double.MAX_VALUE;
 
     @Rule
@@ -125,6 +134,7 @@ public abstract class BaseSimulationTest {
     public void runTest() {
         try {
             ECM.getInstance().canRun.release();
+            ECM.setRandomSeed(1L);
             simulation();
             assertSimulationState();
         } catch (Exception e) {

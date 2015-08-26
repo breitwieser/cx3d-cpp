@@ -75,8 +75,7 @@ public class PhysicalBond implements SimStateSerializable {
 	public StringBuilder simStateToJson(StringBuilder sb) {
 		sb.append("{");
 
-//		FIXME SimStateSerializationUtil.keyValue(sb, "a", a);
-//		SimStateSerializationUtil.keyValue(sb, "b", b);
+		//a, b circular reference
 		SimStateSerializationUtil.keyValue(sb, "originOnA", originOnA);
 		SimStateSerializationUtil.keyValue(sb, "originOnB", originOnB);
 		SimStateSerializationUtil.keyValue(sb, "restingLength", restingLength);

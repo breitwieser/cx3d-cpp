@@ -94,10 +94,7 @@ public class PhysicalCylinder extends PhysicalObject{
 	public StringBuilder simStateToJson(StringBuilder sb) {
 		super.simStateToJson(sb);
 
-		//TODO neuriteElement is circular reference?
-		//TODO motherNode circular reference?
-//		FIXME mapOfDoubleArray(sb, "daughterLeftNode", daughterLeftNode);
-//		FIXME mapOfDoubleArray(sb, "daughterRightNode", daughterRightNode);
+		//motherNode, neuriteElementm daughterLeft, daughterRight are circular references
 		keyValue(sb, "branchOrder", branchOrder);
 		keyValue(sb, "forceToTransmitToProximalMass", forceToTransmitToProximalMass);
 		keyValue(sb, "springAxis", springAxis);

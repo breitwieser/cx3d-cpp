@@ -43,7 +43,7 @@ public class SimpleCellCycle implements CellModule{
 	public StringBuilder simStateToJson(StringBuilder sb) {
 		sb.append("{");
 
-//		keyValue(sb, "cell", cell);
+		keyValue(sb, "cell", cell);
 		keyValue(sb, "enable", enable);
 		keyValue(sb, "dVdt", dVdt);
 		keyValue(sb, "minimumDiameter", minimumDiameter);

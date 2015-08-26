@@ -100,7 +100,7 @@ public class PhysicalNode implements Serializable, SimStateSerializable{
 		SimStateSerializationUtil.keyValue(sb, "lastECMTimeDegradateWasRun", lastECMTimeDegradateWasRun);
 		SimStateSerializationUtil.keyValue(sb, "movementConcentratioUpdateProcedure", movementConcentratioUpdateProcedure);
 		SimStateSerializationUtil.map(sb, "extracellularSubstances", extracellularSubstances);
-//		FIXME SimStateSerializationUtil.keyValue(sb, "soNode", soNode);
+		SimStateSerializationUtil.keyValue(sb, "soNode", soNode);
 
 		SimStateSerializationUtil.removeLastChar(sb);
 		sb.append("}");
