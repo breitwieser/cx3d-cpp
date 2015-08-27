@@ -31,6 +31,7 @@ public:
   Square(double w) : width(w) { }
   virtual double area();
   virtual double perimeter();
+  virtual double diagonal();
 };
 }
 }

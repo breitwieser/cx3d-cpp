@@ -28,3 +28,7 @@ double Square::area() {
 double Square::perimeter() {
   return 4*width;
 }
+
+double Square::diagonal() {
+  return width * 1.414213562; // width * squrt(2)
+}

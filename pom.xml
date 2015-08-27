@@ -10,6 +10,7 @@
 
     <properties>
         <testResourcePath>${project.basedir}/src/test/resources</testResourcePath>
+        <mainResourcePath>${project.basedir}/src/main/resources</mainResourcePath>
         <updateSimStateReferenceFiles>false</updateSimStateReferenceFiles>
     </properties>
 
@@ -37,6 +38,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.16</version>
                 <configuration>
+                    <!-- set java.library.path to be able to load native libraries -->
+                    <argLine>-Djava.library.path=${basedir}/src/main/resources/</argLine>
                     <!-- execute tests sequentially and in separate jvm -->
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>

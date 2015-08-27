@@ -44,7 +44,7 @@ SET(CMAKE_SWIG_FLAGS -package ini.cx3d.swig.module2 -c++)
 set(CMAKE_SWIG_OUTDIR ${JAVA_PROJECT_SRC_PATH}/module2)
 
 SET_SOURCE_FILES_PROPERTIES(${CPP_PROJECT_PATH}/swig/module2.i PROPERTIES CPLUSPLUS ON)
-SWIG_ADD_MODULE(cx3d_module java ${CPP_PROJECT_PATH}/swig/module2.i ${SOURCES})
+SWIG_ADD_MODULE(cx3d_module2 java ${CPP_PROJECT_PATH}/swig/module2.i ${SOURCES})
 
 
 
