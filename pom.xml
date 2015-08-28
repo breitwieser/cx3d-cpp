@@ -24,6 +24,74 @@
         </testResources>
 
         <plugins>
+            <!-- clean jni files-->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
+                <configuration>
+                    <filesets>
+                        <!-- remove compiled jni libraries -->
+                        <fileset>
+                            <directory>${mainResourcePath}</directory>
+                            <includes>
+                                <include>**/*.so</include>
+                                <include>**/*.jnilib</include>
+                                <include>**/*.dll</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <!-- remove generated java proxy classes -->
+                        <fileset>
+                            <directory>${project.basedir}/src/main/java/ini/cx3d/swig/</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <!-- remove generated cxx wrappers -->
+                        <fileset>
+                            <directory>${project.basedir}/src/main/cpp/swig/</directory>
+                            <includes>
+                                <include>*_wrap.cxx</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <!-- remove generated cmake files -->
+                        <fileset>
+                            <directory>${project.basedir}/cmake/</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <excludes>
+                                <exclude>CMakeLists.txt</exclude>
+                                <exclude>build.sh</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- compile jni library and generate java proxies -->
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
+                        <id>cmake build</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/cmake/</workingDirectory>
+                            <executable>./build.sh</executable>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- compile java -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -33,6 +101,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <!-- test -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
