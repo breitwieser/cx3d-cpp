@@ -1,4 +1,6 @@
 /* File : example.h */
+#include <vector>
+
 namespace cx3d { namespace example {
 class Shape {
 public:
@@ -32,5 +34,24 @@ public:
   virtual double area();
   virtual double perimeter();
 };
+
+class VectorHolder {
+public:
+  std::vector<double> getNewVector(){
+    return std::vector<double>(10,1.0);
+  }
+
+  std::vector<double>& getContent(){
+    return content_;
+  }
+
+  VectorHolder(): content_(std::vector<double>(5, 2.3)){ }
+
+  virtual ~VectorHolder(){}
+
+private:
+  std::vector<double> content_;
+};
+
 }
 }
